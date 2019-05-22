@@ -7,10 +7,7 @@
 
 // Note this code is adapted from simplePIC.c from Northwestern University mechatronics ME-333 class
 
-#define MAX_MESSAGE_LENGTH 200
-#define WAITING 0
 #define CORE_TICKS 40000000 // number of core ticks in 1 second, 80 MHz
-#define MAXDIST 2.0
 
 /*
 define the x and y values of all 3 sensors here
@@ -22,9 +19,17 @@ use a hash table for the node measurements?
 // #define BASELINE_DISTANCE = xxxxx;
 // #define EPSILON_DISTANCE = xxxxx;
 
-int32_t main(void) {
-
+void setup_nu32_softrobotics() {
   NU32_Startup();
+  __builtin_disable_interrupts(); 
+  TRISB &= 0xFFE0;  
+  //LATDbits.LATD3 = 0;
+  LATB &= 0xFFE0;
+  __builtin_enable_interrupts();
+}
+
+
+int32_t main(void) {
 
 /*  __builtin_disable_interrupts();   // step 2: disable interrupts at CPU
   T2CONbits.TCKPS = 0b111;     // Timer2 prescaler N=64
@@ -39,7 +44,7 @@ int32_t main(void) {
 
   // use at command +++ and get the remote id and then attach that to the
   // message written to the uart here with the distance
-  __builtin_disable_interrupts();   // step 2: disable interrupts at CPU
+  //__builtin_disable_interrupts();   // step 2: disable interrupts at CPU
 /*  T2CONbits.TCKPS = 0b111;     // Timer2 prescaler N=64
   PR2 = 31249;              // period = (PR2+1) * N * 12.5 ns = 100 Hz
   TMR2 = 0;                // initial TMR2 count is 0
@@ -54,11 +59,11 @@ int32_t main(void) {
   IFS1bits.U2TXIF = 0;
   IFS1bits.U2EIF = 0;
   IPC8bits.U2IP = 6;*/
-  __builtin_enable_interrupts();    // step 7: CPU interrupts enabled
+  //__builtin_enable_interrupts();    // step 7: CPU interrupts enabled
 
   //TRISD &= 0xFFF7;       // Bit 3 of TRISD is set to 0 to set it as digital output
                          // Use this pin 51 for output to send a pulse to the US sensor
-  LATDbits.LATD3 = 0;
+  //LATDbits.LATD3 = 0;
   
   while (1) {
     
