@@ -18,8 +18,8 @@
 #define PUMP0  50
 //#define PUMP1 = 51
 
-#define VALVECLOSED  1
-#define VALVEOPEN  0
+#define VCLOSED  1
+#define VOPEN  0
 
 #define VALVESOPEN 0
 #define VALVESVACUUMOPEN 1
@@ -34,9 +34,9 @@
 
 int getValveState();
 int getPumpState();
-void switchState();
+void switchState(int newState);
 void allPowerOff();
-void valveToState();
-void pumpToState();
+void valveToState(unsigned int valve, unsigned int state);
+void pumpToState(unsigned int pump, unsigned int state);
 
 #endif

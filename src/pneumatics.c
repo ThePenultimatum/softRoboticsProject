@@ -39,24 +39,31 @@ void pumpToState(unsigned int pump, unsigned int state) {
 	switch(pump){
 		case PUMP0 :
 		    pump = state;
+		    break;
 		default :
-		    ;
-	}	
+		    break;
+	}
+	return;
 }
 
 void valveToState(unsigned int valve, unsigned int state) {
 	switch(valve){
 		case VALVE0 :
 		    VALVE0POWER = state;
+		    break;
 		case VALVE1 :
 		    VALVE1POWER = state;
+		    break;
 		case VALVE2 :
 		    VALVE2POWER = state;
+		    break;
 		case VALVE3 :
 		    VALVE3POWER = state;
+		    break;
 		default :
-		    ;
+		    break;
 	}
+	return;
 }
 
 void switchState(int newState) {
@@ -77,45 +84,70 @@ void switchState(int newState) {
 	switch(currValveState) {
 		case VALVESOPEN :
 		    if (newState == VALVESVACUUMOPEN) {
-		    	;
+		    	valveToState(VALVE3, VCLOSED);
+		    	valveToState(VALVE0, VCLOSED);
 		    } else if (newState == VALVESAIROPEN) {
-		    	;
+		    	valveToState(VALVE1, VCLOSED);
+		    	valveToState(VALVE2, VCLOSED);
 		    } else if (newState == VALVESCLOSED) {
-		    	;
+		    	valveToState(VALVE3, VCLOSED);
+		    	valveToState(VALVE1, VCLOSED);
+		    	valveToState(VALVE0, VCLOSED);
+		    	valveToState(VALVE2, VCLOSED);
 		    } else {
 		    	return;
 		    }
+		    break;
 		case VALVESVACUUMOPEN :
 		    if (newState == VALVESOPEN) {
-		    	;
+		    	valveToState(VALVE0, VOPEN);
+		    	valveToState(VALVE3, VOPEN);
 		    } else if (newState == VALVESAIROPEN) {
-		    	;
+		    	valveToState(VALVE1, VCLOSED);
+		    	valveToState(VALVE2, VCLOSED);
+		    	valveToState(VALVE3, VOPEN);
+		    	valveToState(VALVE0, VOPEN);
 		    } else if (newState == VALVESCLOSED) {
-		    	;
+		    	valveToState(VALVE1, VCLOSED);
+		    	valveToState(VALVE2, VCLOSED);
 		    } else {
 		    	return;
 		    }
+		    break;
 		case VALVESAIROPEN :
 		    if (newState == VALVESOPEN) {
-		    	;
+		    	valveToState(VALVE2, VOPEN);
+		    	valveToState(VALVE1, VOPEN);
 		    } else if (newState == VALVESVACUUMOPEN) {
-		    	;
+		    	valveToState(VALVE3, VCLOSED);
+		    	valveToState(VALVE0, VCLOSED);
+		    	valveToState(VALVE2, VOPEN);
+		    	valveToState(VALVE1, VOPEN);
 		    } else if (newState == VALVESCLOSED) {
-		    	;
+		    	valveToState(VALVE3, VCLOSED);
+		    	valveToState(VALVE0, VCLOSED);
 		    } else {
 		    	return;
 		    }
+		    break;
 		case VALVESCLOSED :
 		    if (newState == VALVESOPEN) {
-		    	;
+		    	valveToState(VALVE2, VOPEN);
+		    	valveToState(VALVE0, VOPEN);
+		    	valveToState(VALVE1, VOPEN);
+		    	valveToState(VALVE3, VOPEN);
 		    } else if (newState == VALVESVACUUMOPEN) {
-		    	;
+		    	valveToState(VALVE2, VOPEN);
+		    	valveToState(VALVE1, VOPEN);
 		    } else if (newState == VALVESAIROPEN) {
-		    	;
+		    	valveToState(VALVE0, VOPEN);
+		    	valveToState(VALVE3, VOPEN);
 		    } else {
 		    	return;
 		    }
+		    break;
 		default :
-		    ;
+		    break;
 	}
+	return;
 }
