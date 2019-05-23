@@ -18,9 +18,9 @@ int getValveState() {
 
 int getPumpState() {
 	if (PUMP0POWER) {
-		return PUMP0ON;
+		return PUMPON;
 	} else {
-		return PUMP0OFF;
+		return PUMPOFF;
 	}
 	//else {
 	//	return UNKNOWNPUMPSTATE;
@@ -28,17 +28,17 @@ int getPumpState() {
 }
 
 void allPowerOff() {
-	PUMPPOWER = 0;
+	PUMP0POWER = 0;
+	VALVE0POWER = 0;
 	VALVE1POWER = 0;
 	VALVE2POWER = 0;
 	VALVE3POWER = 0;
-	VALVE4POWER = 0;
 }
 
 void pumpToState(unsigned int pump, unsigned int state) {
 	switch(pump){
 		case PUMP0 :
-		    PUMPPOWER = state;
+		    pump = state;
 		default :
 		    ;
 	}	
@@ -70,5 +70,5 @@ void switchState(int stateval) {
 
 	pumpToState(PUMP0, PUMPOFF);
 
-	
+
 }

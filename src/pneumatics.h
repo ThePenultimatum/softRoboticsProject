@@ -10,16 +10,16 @@
 #define VALVE2POWER LATBbits.LATB2
 #define VALVE3POWER LATBbits.LATB3
 
-#define VALVE0 = 0
-#define VALVE1 = 1
-#define VALVE2 = 2
-#define VALVE3 = 3
+#define VALVE0  0
+#define VALVE1  1
+#define VALVE2  2
+#define VALVE3  3
 
-#define PUMP0 = 50
+#define PUMP0  50
 //#define PUMP1 = 51
 
-#define VALVECLOSED = 1
-#define VALVEOPEN = 0
+#define VALVECLOSED  1
+#define VALVEOPEN  0
 
 #define VALVESOPEN 0
 #define VALVESVACUUMOPEN 1
