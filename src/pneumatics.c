@@ -59,7 +59,7 @@ void valveToState(unsigned int valve, unsigned int state) {
 	}
 }
 
-void switchState(int stateval) {
+void switchState(int newState) {
 	// states are 0, 1, 2, 3
 	// states correspond to valve configurations
 	// 0 is all valves off, 3 is all valves on
@@ -68,7 +68,54 @@ void switchState(int stateval) {
 	int currValveState = getValveState();
 	int currPumpState = getPumpState();
 
+    if (currValveState == newState) {
+    	return;
+    }
+
 	pumpToState(PUMP0, PUMPOFF);
 
-
+	switch(currValveState) {
+		case VALVESOPEN :
+		    if (newState == VALVESVACUUMOPEN) {
+		    	;
+		    } else if (newState == VALVESAIROPEN) {
+		    	;
+		    } else if (newState == VALVESCLOSED) {
+		    	;
+		    } else {
+		    	return;
+		    }
+		case VALVESVACUUMOPEN :
+		    if (newState == VALVESOPEN) {
+		    	;
+		    } else if (newState == VALVESAIROPEN) {
+		    	;
+		    } else if (newState == VALVESCLOSED) {
+		    	;
+		    } else {
+		    	return;
+		    }
+		case VALVESAIROPEN :
+		    if (newState == VALVESOPEN) {
+		    	;
+		    } else if (newState == VALVESVACUUMOPEN) {
+		    	;
+		    } else if (newState == VALVESCLOSED) {
+		    	;
+		    } else {
+		    	return;
+		    }
+		case VALVESCLOSED :
+		    if (newState == VALVESOPEN) {
+		    	;
+		    } else if (newState == VALVESVACUUMOPEN) {
+		    	;
+		    } else if (newState == VALVESAIROPEN) {
+		    	;
+		    } else {
+		    	return;
+		    }
+		default :
+		    ;
+	}
 }
