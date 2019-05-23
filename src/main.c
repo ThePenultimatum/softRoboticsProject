@@ -73,6 +73,8 @@ int32_t main(void) {
   //LATDbits.LATD3 = 0;
 
   allPowerOff();
+
+  int i = 0;
   
   while (1) {
 
@@ -116,18 +118,29 @@ int32_t main(void) {
       LATBbits.LATB5 = 1;
     }*/
 
-    if (getValveState() == VALVESOPEN) {
-      switchState(VALVESCLOSED);
-    } else {
-      switchState(VALVESOPEN);
-    }
-    //VALVE0POWER = 1;
-    //LATBbits.LATB0 = 1;
-    //valveToState(VALVE0, VCLOSED);
+    if (i < 1) {
+      if (getValveState() == VALVESOPEN) {
 
-    _CP0_SET_COUNT(0);
-    while (_CP0_GET_COUNT() < 80000000) {
-      Nop();
+        switchState(VALVESCLOSED);
+      } else {
+        switchState(VALVESOPEN);
+      }
+      //VALVE0POWER = 1;
+      //LATBbits.LATB0 = 1;
+      //valveToState(VALVE0, VCLOSED);
+
+      switchState(VALVESAIROPEN);
+
+      pumpToState(PUMP0, PUMPON);
+
+      _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+
+      pumpToState(PUMP0, PUMPOFF);
+      switchState(VALVESOPEN);
+
     }
     //VALVE0POWER = 0;
     //LATBbits.LATB0 = 0;
@@ -135,6 +148,7 @@ int32_t main(void) {
     // while (_CP0_GET_COUNT() < 80000000) {
     //   Nop();
     // }
+    i++;
   }
   return 0;
 }
