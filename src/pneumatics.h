@@ -18,8 +18,8 @@
 #define PUMP0  50
 //#define PUMP1 = 51
 
-#define VCLOSED  1
-#define VOPEN  0
+#define VCLOSED  0
+#define VOPEN  1
 
 #define VALVESOPEN 0
 #define VALVESVACUUMOPEN 1
@@ -27,8 +27,8 @@
 #define VALVESCLOSED 3
 #define UNKNOWNVALVESTATE 100
 
-#define PUMPON 1
-#define PUMPOFF 0
+#define PUMPON 0
+#define PUMPOFF 1
 #define UNKNOWNPUMPSTATE 200
 
 

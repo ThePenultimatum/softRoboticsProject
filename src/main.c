@@ -3,9 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "NU32.h"          // constants, funcs for startup and UART
-//#include "./xbee_ansic_library/include/xbee/serial.h"
-
-// Note this code is adapted from simplePIC.c from Northwestern University mechatronics ME-333 class
+#include "pneumatics.h"
 
 #define CORE_TICKS 40000000 // number of core ticks in 1 second, 80 MHz
 
@@ -32,13 +30,13 @@ void setup_nu32_softrobotics() {
 int32_t main(void) {
   setup_nu32_softrobotics();
 
-  LATBbits.LATB0 = 1;
-  LATBbits.LATB1 = 0;
-  LATBbits.LATB2 = 1;
-  LATBbits.LATB3 = 0;
-  LATBbits.LATB5 = 1;
+  //LATBbits.LATB0 = 1;
+  //LATBbits.LATB1 = 0;
+  //LATBbits.LATB2 = 1;
+  //LATBbits.LATB3 = 0;
+  //LATBbits.LATB5 = 1;
 
-  LATDbits.LATD3 = 0;
+  //LATDbits.LATD3 = 0;
 
 /*  __builtin_disable_interrupts();   // step 2: disable interrupts at CPU
   T2CONbits.TCKPS = 0b111;     // Timer2 prescaler N=64
@@ -73,10 +71,12 @@ int32_t main(void) {
   //TRISD &= 0xFFF7;       // Bit 3 of TRISD is set to 0 to set it as digital output
                          // Use this pin 51 for output to send a pulse to the US sensor
   //LATDbits.LATD3 = 0;
+
+  allPowerOff();
   
   while (1) {
 
-    if (LATBbits.LATB0) {
+    /*if (LATBbits.LATB0) {
       LATBbits.LATB0 = 0;
     } else {
       LATBbits.LATB0 = 1;
@@ -114,12 +114,27 @@ int32_t main(void) {
       LATBbits.LATB5 = 0;
     } else {
       LATBbits.LATB5 = 1;
+    }*/
+
+    if (getValveState() == VALVESOPEN) {
+      switchState(VALVESCLOSED);
+    } else {
+      switchState(VALVESOPEN);
     }
+    //VALVE0POWER = 1;
+    //LATBbits.LATB0 = 1;
+    //valveToState(VALVE0, VCLOSED);
 
     _CP0_SET_COUNT(0);
     while (_CP0_GET_COUNT() < 80000000) {
       Nop();
     }
+    //VALVE0POWER = 0;
+    //LATBbits.LATB0 = 0;
+    // _CP0_SET_COUNT(0);
+    // while (_CP0_GET_COUNT() < 80000000) {
+    //   Nop();
+    // }
   }
   return 0;
 }

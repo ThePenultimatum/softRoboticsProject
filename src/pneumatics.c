@@ -1,11 +1,11 @@
 #include "pneumatics.h"
 
 int getValveState() {
-	int oneAndTwo = VALVE1POWER && VALVE2POWER;
-	int zeroAndThree = VALVE0POWER && VALVE3POWER;
+	int oneAndTwo = ((LATBbits.LATB1 && LATBbits.LATB2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+	int zeroAndThree = ((LATBbits.LATB0 && LATBbits.LATB3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 	if (oneAndTwo && zeroAndThree) { //VALVE0POWER && VALVE1POWER && VALVE2POWER && VALVE3POWER) {
 		return VALVESCLOSED;
-	} else if (!(oneAndTwo && zeroAndThree)) {
+	} else if (!(oneAndTwo || zeroAndThree)) {
 		return VALVESOPEN;
 	} else if (oneAndTwo && (!zeroAndThree)) {
 		return VALVESAIROPEN;
@@ -17,7 +17,7 @@ int getValveState() {
 }
 
 int getPumpState() {
-	if (PUMP0POWER) {
+	if (!(LATBbits.LATB5)) {//PUMP0POWER) {
 		return PUMPON;
 	} else {
 		return PUMPOFF;
@@ -28,17 +28,23 @@ int getPumpState() {
 }
 
 void allPowerOff() {
-	PUMP0POWER = 0;
+	/*PUMP0POWER = 0;
 	VALVE0POWER = 0;
 	VALVE1POWER = 0;
 	VALVE2POWER = 0;
-	VALVE3POWER = 0;
+	VALVE3POWER = 0;*/
+	LATBbits.LATB0 = VOPEN;
+	LATBbits.LATB1 = VOPEN;
+	LATBbits.LATB2 = VOPEN;
+	LATBbits.LATB3 = VOPEN;
+	LATBbits.LATB5 = VOPEN;
 }
 
 void pumpToState(unsigned int pump, unsigned int state) {
 	switch(pump){
 		case PUMP0 :
-		    pump = state;
+		    //pump = state;
+		    LATBbits.LATB5 = state;
 		    break;
 		default :
 		    break;
@@ -49,16 +55,20 @@ void pumpToState(unsigned int pump, unsigned int state) {
 void valveToState(unsigned int valve, unsigned int state) {
 	switch(valve){
 		case VALVE0 :
-		    VALVE0POWER = state;
+		    //VALVE0POWER = state;
+		    LATBbits.LATB0 = state;
 		    break;
 		case VALVE1 :
-		    VALVE1POWER = state;
+		    //VALVE1POWER = state;
+		    LATBbits.LATB1 = state;
 		    break;
 		case VALVE2 :
-		    VALVE2POWER = state;
+		    //VALVE2POWER = state;
+		    LATBbits.LATB2 = state;
 		    break;
 		case VALVE3 :
-		    VALVE3POWER = state;
+		    //VALVE3POWER = state;
+		    LATBbits.LATB3 = state;
 		    break;
 		default :
 		    break;
