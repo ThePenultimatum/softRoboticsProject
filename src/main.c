@@ -22,14 +22,23 @@ use a hash table for the node measurements?
 void setup_nu32_softrobotics() {
   NU32_Startup();
   __builtin_disable_interrupts(); 
-  TRISB &= 0xFFE0;  
-  //LATDbits.LATD3 = 0;
-  LATB &= 0xFFE0;
+  TRISB &= 0xFFD0;
+  LATB &= 0xFFD0;
+  TRISD &= 0xFFFB;
   __builtin_enable_interrupts();
 }
 
 
 int32_t main(void) {
+  setup_nu32_softrobotics();
+
+  LATBbits.LATB0 = 1;
+  LATBbits.LATB1 = 0;
+  LATBbits.LATB2 = 1;
+  LATBbits.LATB3 = 0;
+  LATBbits.LATB5 = 1;
+
+  LATDbits.LATD3 = 0;
 
 /*  __builtin_disable_interrupts();   // step 2: disable interrupts at CPU
   T2CONbits.TCKPS = 0b111;     // Timer2 prescaler N=64
@@ -66,7 +75,51 @@ int32_t main(void) {
   //LATDbits.LATD3 = 0;
   
   while (1) {
-    
+
+    if (LATBbits.LATB0) {
+      LATBbits.LATB0 = 0;
+    } else {
+      LATBbits.LATB0 = 1;
+    }
+
+
+    if (LATBbits.LATB1) {
+      LATBbits.LATB1 = 0;
+    } else {
+      LATBbits.LATB1 = 1;
+    }
+
+    if (LATDbits.LATD3) {
+      LATDbits.LATD3 = 0;
+    } else {
+      LATDbits.LATD3 = 1;
+    }
+
+
+    if (LATBbits.LATB2) {
+      LATBbits.LATB2 = 0;
+    } else {
+      LATBbits.LATB2 = 1;
+    }
+
+
+    if (LATBbits.LATB3) {
+      LATBbits.LATB3 = 0;
+    } else {
+      LATBbits.LATB3 = 1;
+    }
+
+
+    if (LATBbits.LATB5) {
+      LATBbits.LATB5 = 0;
+    } else {
+      LATBbits.LATB5 = 1;
+    }
+
+    _CP0_SET_COUNT(0);
+    while (_CP0_GET_COUNT() < 80000000) {
+      Nop();
+    }
   }
   return 0;
 }
