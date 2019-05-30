@@ -87,46 +87,41 @@ int getPumpState(int pump) {
 }
 
 void allPowerOff(int valveSet) {
-	/*PUMP0POWER = 0;
-	VALVE0POWER = 0;
-	VALVE1POWER = 0;
-	VALVE2POWER = 0;
-	VALVE3POWER = 0;*/
 	switch valveSet {
 		case VALVESET0 :
-			LATBbits.LATB0 = VOPEN;
-			LATBbits.LATB1 = VOPEN;
-			LATBbits.LATB2 = VOPEN;
-			LATBbits.LATB3 = VOPEN;
-			LATBbits.LATB4 = VOPEN;
+			LATBbits.LATB0 = VCLOSED;
+			LATBbits.LATB1 = VCLOSED;
+			LATBbits.LATB2 = VCLOSED;
+			LATBbits.LATB3 = VCLOSED;
+			LATBbits.LATB4 = PUMPOFF;
 			break;
 		case VALVESET1 :
-			LATBbits.LATB5 = VOPEN;
-			LATBbits.LATB6 = VOPEN;
-			LATBbits.LATB7 = VOPEN;
-			LATBbits.LATB8 = VOPEN;
-			LATBbits.LATB9 = VOPEN;
+			LATBbits.LATB5 = VCLOSED;
+			LATBbits.LATB6 = VCLOSED;
+			LATBbits.LATB7 = VCLOSED;
+			LATBbits.LATB8 = VCLOSED;
+			LATBbits.LATB9 = PUMPOFF;
 			break;
 		case VALVESET2 :
-			LATBbits.LATB10 = VOPEN;
-			LATBbits.LATB11 = VOPEN;
-			LATBbits.LATB12 = VOPEN;
-			LATBbits.LATB13 = VOPEN;
-			LATBbits.LATB14 = VOPEN;
+			LATBbits.LATB10 = VCLOSED;
+			LATBbits.LATB11 = VCLOSED;
+			LATBbits.LATB12 = VCLOSED;
+			LATBbits.LATB13 = VCLOSED;
+			LATBbits.LATB14 = PUMPOFF;
 			break;
 		case VALVESET3 :
-			LATDbits.LATD0 = VOPEN;
-			LATDbits.LATD1 = VOPEN;
-			LATDbits.LATD2 = VOPEN;
-			LATDbits.LATD3 = VOPEN;
-			LATDbits.LATD4 = VOPEN;
+			LATDbits.LATD0 = VCLOSED;
+			LATDbits.LATD1 = VCLOSED;
+			LATDbits.LATD2 = VCLOSED;
+			LATDbits.LATD3 = VCLOSED;
+			LATDbits.LATD4 = PUMPOFF;
 			break;
 		case VALVESET4 :
-			LATDbits.LATD5 = VOPEN;
-			LATDbits.LATD6 = VOPEN;
-			LATDbits.LATD7 = VOPEN;
-			LATDbits.LATD8 = VOPEN;
-			LATDbits.LATD9 = VOPEN;
+			LATDbits.LATD5 = VCLOSED;
+			LATDbits.LATD6 = VCLOSED;
+			LATDbits.LATD7 = VCLOSED;
+			LATDbits.LATD8 = VCLOSED;
+			LATDbits.LATD9 = PUMPOFF;
 			break;
 		default :
 		    break;
