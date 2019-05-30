@@ -34,30 +34,35 @@
 #define VALVE18POWER LATDbits.LATD7
 #define VALVE19POWER LATDbits.LATD8
 
+#define VALVESET0 0
 #define PUMP0  50
 #define VALVE0  0
 #define VALVE1  1
 #define VALVE2  2
 #define VALVE3  3
 
+#define VALVESET1 1
 #define PUMP1  51
 #define VALVE4  4
 #define VALVE5  5
 #define VALVE6  6
 #define VALVE7  7
 
+#define VALVESET2 2
 #define PUMP2  52
 #define VALVE8  8
 #define VALVE9  9
 #define VALVE10 10
 #define VALVE11 11
 
+#define VALVESET3 3
 #define PUMP3  53
 #define VALVE12 12
 #define VALVE13 13
 #define VALVE14 14
 #define VALVE15 15
 
+#define VALVESET4 4
 #define PUMP4  54
 #define VALVE16 16
 #define VALVE17 17
@@ -78,9 +83,9 @@
 #define UNKNOWNPUMPSTATE 200
 
 
-int getValveState();
-int getPumpState();
-void switchState(int newState);
+int getValveState(int valveSet);
+int getPumpState(int pump);
+void switchState(int newState, int valveSet);
 void allPowerOff();
 void valveToState(unsigned int valve, unsigned int state);
 void pumpToState(unsigned int pump, unsigned int state);
