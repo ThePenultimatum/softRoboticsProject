@@ -41,28 +41,15 @@ int32_t main(void) {
   
   while (1) {
 
-    LATB = 0x8000;
-    LATD = 0xFC00;
-    _CP0_SET_COUNT(0);
-    while (_CP0_GET_COUNT() < 80000000) {
-      Nop();
-    }
-    LATB = 0xFFFF;
-    LATD = 0xFFFF;
-    _CP0_SET_COUNT(0);
-    while (_CP0_GET_COUNT() < 80000000) {
-      Nop();
-    }
+    if (i < 2) {
+      if (getValveState(VALVESET0) == VALVESOPEN) {
 
-    /*if (i < 2) {
-      if (getValveState() == VALVESOPEN) {
-
-        switchState(VALVESCLOSED);
+        switchState(VALVESCLOSED, VALVESET0);
       } else {
-        switchState(VALVESOPEN);
+        switchState(VALVESOPEN, VALVESET0);
       }
 
-      switchState(VALVESAIROPEN);
+      switchState(VALVESAIROPEN, VALVESET0);
 
       pumpToState(PUMP0, PUMPON);
 
@@ -76,21 +63,21 @@ int32_t main(void) {
       }
 
       pumpToState(PUMP0, PUMPOFF);
-      switchState(VALVESOPEN);
+      switchState(VALVESOPEN, VALVESET0);
 
       //////////////////////////////////////////
 
-      if (getValveState() == VALVESOPEN) {
+      if (getValveState(VALVESET0) == VALVESOPEN) {
 
-        switchState(VALVESCLOSED);
+        switchState(VALVESCLOSED, VALVESET0);
       } else {
-        switchState(VALVESOPEN);
+        switchState(VALVESOPEN, VALVESET0);
       }
       //VALVE0POWER = 1;
       //LATBbits.LATB0 = 1;
       //valveToState(VALVE0, VCLOSED);
 
-      switchState(VALVESVACUUMOPEN);
+      switchState(VALVESVACUUMOPEN, VALVESET0);
 
       pumpToState(PUMP0, PUMPON);
 
@@ -100,11 +87,11 @@ int32_t main(void) {
       }
 
       pumpToState(PUMP0, PUMPOFF);
-      switchState(VALVESOPEN);
+      switchState(VALVESOPEN, VALVESET0);
 
     }
 
-    i++;*/
+    i++;
   }
   return 0;
 }
