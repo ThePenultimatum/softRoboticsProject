@@ -3,26 +3,26 @@
 int getValveState(int valveSet) {
 	int oneAndTwo = ((LATBbits.LATB1 && LATBbits.LATB2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
 	int zeroAndThree = ((LATBbits.LATB0 && LATBbits.LATB3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
-	switch valveSet {
+	switch(valveSet) {
 		case VALVESET0 :
-			int oneAndTwo = ((LATBbits.LATB1 && LATBbits.LATB2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			int zeroAndThree = ((LATBbits.LATB0 && LATBbits.LATB3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((LATBbits.LATB1 && LATBbits.LATB2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((LATBbits.LATB0 && LATBbits.LATB3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET1 :
-			int oneAndTwo = ((LATBbits.LATB6 && LATBbits.LATB7) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			int zeroAndThree = ((LATBbits.LATB5 && LATBbits.LATB8) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((LATBbits.LATB6 && LATBbits.LATB7) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((LATBbits.LATB5 && LATBbits.LATB8) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET2 :
-			int oneAndTwo = ((LATBbits.LATB11 && LATBbits.LATB12) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			int zeroAndThree = ((LATBbits.LATB10 && LATBbits.LATB13) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((LATBbits.LATB11 && LATBbits.LATB12) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((LATBbits.LATB10 && LATBbits.LATB13) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET3 :
-			int oneAndTwo = ((LATDbits.LATD1 && LATDbits.LATD2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			int zeroAndThree = ((LATDbits.LATD0 && LATDbits.LATD3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((LATDbits.LATD1 && LATDbits.LATD2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((LATDbits.LATD0 && LATDbits.LATD3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET4 :
-			int oneAndTwo = ((LATDbits.LATD6 && LATDbits.LATD7) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			int zeroAndThree = ((LATBbits.LATD5 && LATBbits.LATD8) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((LATDbits.LATD6 && LATDbits.LATD7) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((LATDbits.LATD5 && LATDbits.LATD8) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		default :
 		    break; //return UNKNOWNVALVESTATE;
@@ -42,7 +42,7 @@ int getValveState(int valveSet) {
 }
 
 int getPumpState(int pump) {
-	switch pump {
+	switch(pump) {
 		case PUMP0 :
 			if (!(LATBbits.LATB4)) {//PUMP0POWER) {
 				return PUMPON;
@@ -87,7 +87,7 @@ int getPumpState(int pump) {
 }
 
 void allPowerOff(int valveSet) {
-	switch valveSet {
+	switch(valveSet) {
 		case VALVESET0 :
 			LATBbits.LATB0 = VCLOSED;
 			LATBbits.LATB1 = VCLOSED;
@@ -264,36 +264,36 @@ void switchState(int newState, int valveSet) {
 	int valve2 = VALVE2;
 	int valve3 = VALVE3;
 
-	switch valveSet {
+	switch(valveSet) {
 		case 0 :
-			int valve0 = VALVE0;
-			int valve1 = VALVE1;
-			int valve2 = VALVE2;
-			int valve3 = VALVE3;
+			valve0 = VALVE0;
+			valve1 = VALVE1;
+			valve2 = VALVE2;
+			valve3 = VALVE3;
 			break;
 		case 1 :
-			int valve0 = VALVE4;
-			int valve1 = VALVE5;
-			int valve2 = VALVE6;
-			int valve3 = VALVE7;
+			valve0 = VALVE4;
+			valve1 = VALVE5;
+			valve2 = VALVE6;
+			valve3 = VALVE7;
 			break;
 		case 2 :
-			int valve0 = VALVE8;
-			int valve1 = VALVE9;
-			int valve2 = VALVE10;
-			int valve3 = VALVE11;
+			valve0 = VALVE8;
+			valve1 = VALVE9;
+			valve2 = VALVE10;
+			valve3 = VALVE11;
 			break;
 		case 3 :
-			int valve0 = VALVE12;
-			int valve1 = VALVE13;
-			int valve2 = VALVE14;
-			int valve3 = VALVE15;
+			valve0 = VALVE12;
+			valve1 = VALVE13;
+			valve2 = VALVE14;
+			valve3 = VALVE15;
 			break;
 		case 4 :
-			int valve0 = VALVE16;
-			int valve1 = VALVE17;
-			int valve2 = VALVE18;
-			int valve3 = VALVE19;
+			valve0 = VALVE16;
+			valve1 = VALVE17;
+			valve2 = VALVE18;
+			valve3 = VALVE19;
 			break;
 		default :
 		    break;
