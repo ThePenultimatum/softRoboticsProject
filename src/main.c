@@ -24,50 +24,110 @@ void setup_nu32_softrobotics() {
   //LATB &= 0xFFD0; // for one pump setup
 
   TRISB &= 0x8000; // for five pump setup
-  LATB &= 0x8000; // for five pump setup
+  LATB &= 0xFFFF; // for five pump setup, 1's because of hex inverter
   TRISD &= 0xFC00; // for five pump setup
-  LATD &= 0xFC00; // for five pump setup
+  LATD &= 0xFFFF; // for five pump setup, 1's because of hex inverter
 
   __builtin_enable_interrupts();
+
+  allPowerOff();
+
+  pumpToState(PUMP0, PUMPOFF);
+  pumpToState(PUMP1, PUMPOFF);
+  pumpToState(PUMP2, PUMPOFF);
+  pumpToState(PUMP3, PUMPOFF);
+  pumpToState(PUMP4, PUMPOFF);
+  valveToState(VALVE0, VCLOSED);
+  valveToState(VALVE1, VCLOSED);
+  valveToState(VALVE2, VCLOSED);
+  valveToState(VALVE3, VCLOSED);
+  valveToState(VALVE4, VCLOSED);
+  valveToState(VALVE5, VCLOSED);
+  valveToState(VALVE6, VCLOSED);
+  valveToState(VALVE7, VCLOSED);
+  valveToState(VALVE8, VCLOSED);
+  valveToState(VALVE9, VCLOSED);
+  valveToState(VALVE10, VCLOSED);
+  valveToState(VALVE11, VCLOSED);
+  valveToState(VALVE12, VCLOSED);
+  valveToState(VALVE13, VCLOSED);
+  valveToState(VALVE14, VCLOSED);
+  valveToState(VALVE15, VCLOSED);
+  valveToState(VALVE16, VCLOSED);
+  valveToState(VALVE17, VCLOSED);
+  valveToState(VALVE18, VCLOSED);
+  valveToState(VALVE19, VCLOSED);
 }
 
 
 int32_t main(void) {
   setup_nu32_softrobotics();
 
-  allPowerOff();
-
   unsigned int i = 0;
-  
+
+  /*_CP0_SET_COUNT(0);
+  while (_CP0_GET_COUNT() < 80000000) {
+    Nop();
+  } */
+  //switchState(VALVESET0, VALVESAIROPEN); 
+  //valveToState(VALVE0, VOPEN);
+  //switchState(VALVESAIROPEN, VALVESET0); 
   while (1) {
 
-    if (i < 2) {
-      if (getValveState(VALVESET0) == VALVESOPEN) {
-
-        switchState(VALVESCLOSED, VALVESET0);
-      } else {
-        switchState(VALVESOPEN, VALVESET0);
-      }
+    if (i < 3) {
 
       switchState(VALVESAIROPEN, VALVESET0);
-
       pumpToState(PUMP0, PUMPON);
 
       _CP0_SET_COUNT(0);
       while (_CP0_GET_COUNT() < 80000000) {
         Nop();
       }
+
+      pumpToState(PUMP0, PUMPOFF);
+
+      switchState(VALVESVACUUMOPEN, VALVESET0);
+      pumpToState(PUMP0, PUMPON);
+
       _CP0_SET_COUNT(0);
       while (_CP0_GET_COUNT() < 80000000) {
         Nop();
       }
 
       pumpToState(PUMP0, PUMPOFF);
+
+      switchState(VALVESCLOSED, VALVESET0);
+    }
+    i++;
+
+    /*if (getValveState(VALVESET0) == VALVESVACUUMOPEN) {
+      valveToState(VALVE15, VCLOSED);
+    }*/
+
+
+
+
+
+
+
+    //pumpToState(PUMP0, PUMPON);
+    //if (i < 2) {
+    /*if (getValveState(VALVESET0) == VALVESOPEN) {
+
+      switchState(VALVESCLOSED, VALVESET0);
+    } else {
       switchState(VALVESOPEN, VALVESET0);
+    }*/
+
+    //switchState(VALVESAIROPEN, VALVESET0);
+
+
+    //pumpToState(PUMP0, PUMPOFF);
+    //switchState(VALVESOPEN, VALVESET0);
 
       //////////////////////////////////////////
 
-      if (getValveState(VALVESET0) == VALVESOPEN) {
+      /*if (getValveState(VALVESET0) == VALVESOPEN) {
 
         switchState(VALVESCLOSED, VALVESET0);
       } else {
@@ -87,11 +147,11 @@ int32_t main(void) {
       }
 
       pumpToState(PUMP0, PUMPOFF);
-      switchState(VALVESOPEN, VALVESET0);
+      switchState(VALVESOPEN, VALVESET0);*/
 
-    }
+    //}
 
-    i++;
+    //i++;
   }
   return 0;
 }

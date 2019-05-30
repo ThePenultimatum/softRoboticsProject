@@ -87,6 +87,7 @@ int getValveState(int valveSet);
 int getPumpState(int pump);
 void switchState(int newState, int valveSet);
 void allPowerOff();
+void allPowerOffValveset(int valveSet);
 void valveToState(unsigned int valve, unsigned int state);
 void pumpToState(unsigned int pump, unsigned int state);
 

@@ -86,7 +86,15 @@ int getPumpState(int pump) {
 	//}
 }
 
-void allPowerOff(int valveSet) {
+void allPowerOff() {
+	allPowerOffValveset(VALVESET0);
+	allPowerOffValveset(VALVESET1);
+	allPowerOffValveset(VALVESET2);
+	allPowerOffValveset(VALVESET3);
+	allPowerOffValveset(VALVESET4);
+}
+
+void allPowerOffValveset(int valveSet) {
 	switch(valveSet) {
 		case VALVESET0 :
 			LATBbits.LATB0 = VCLOSED;
@@ -257,7 +265,7 @@ void switchState(int newState, int valveSet) {
     	return;
     }
 
-	pumpToState(PUMP0, PUMPOFF);
+	//pumpToState(PUMP0, PUMPOFF);
 
 	int valve0 = VALVE0;
 	int valve1 = VALVE1;
