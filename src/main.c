@@ -81,7 +81,7 @@ int32_t main(void) {
   //switchState(VALVESAIROPEN, VALVESET0);
   while (1) {
     NU32_ReadUART3(buffer, buflen);
-    sprintf(buffer, "%6.4f", data);
+    sscanf(buffer, "%6.4f             ", data);
 
     if (data <= midval) {
       switchState(VALVESAIROPEN, valvesetInUse); // BACKWARDS SETTINGS BECAUSE OF MISLABELING WITH MANIFOLD
