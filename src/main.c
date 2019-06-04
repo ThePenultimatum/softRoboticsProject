@@ -74,7 +74,7 @@ int32_t main(void) {
   //switchState(VALVESAIROPEN, VALVESET0); 
   while (1) {
 
-    if (i < 3) {
+    /*if (i < 3) {
 
       switchState(VALVESAIROPEN, VALVESET0);
       pumpToState(PUMP0, PUMPON);
@@ -98,7 +98,133 @@ int32_t main(void) {
 
       switchState(VALVESCLOSED, VALVESET0);
     }
-    i++;
+    i++;*/
+
+    valveToState(VALVE0, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE1, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE2, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE3, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE4, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE5, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE6, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE7, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE8, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE9, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE10, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE11, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE12, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE13, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE14, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE15, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE16, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE17, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE18, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    valveToState(VALVE19, VCLOSED);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    pumpToState(PUMP0, PUMPOFF);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    pumpToState(PUMP1, PUMPOFF);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    pumpToState(PUMP2, PUMPOFF);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    pumpToState(PUMP3, PUMPOFF);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }
+    pumpToState(PUMP4, PUMPOFF);
+    _CP0_SET_COUNT(0);
+      while (_CP0_GET_COUNT() < 80000000) {
+        Nop();
+      }  
 
     /*if (getValveState(VALVESET0) == VALVESVACUUMOPEN) {
       valveToState(VALVE15, VCLOSED);
