@@ -1,28 +1,58 @@
 #include "pneumatics.h"
 
+#define PUMP0POWER LATDbits.LATD2
+#define VALVE0POWER LATBbits.LATB4
+#define VALVE1POWER LATBbits.LATB8
+#define VALVE2POWER LATBbits.LATB3
+#define VALVE3POWER LATBbits.LATB5
+
+#define PUMP1POWER LATDbits.LATD3
+#define VALVE4POWER LATBbits.LATB6
+#define VALVE5POWER LATBbits.LATB10
+#define VALVE6POWER LATBbits.LATB7
+#define VALVE7POWER LATBbits.LATB11
+
+#define PUMP2POWER LATDbits.LATD4
+#define VALVE8POWER LATBbits.LATB9
+#define VALVE9POWER LATBbits.LATB14
+#define VALVE10POWER LATBbits.LATB2
+#define VALVE11POWER LATDbits.LATD1
+
+#define PUMP3POWER LATDbits.LATD5
+#define VALVE12POWER LATBbits.LATB12
+#define VALVE13POWER LATDbits.LATD9
+#define VALVE14POWER LATBbits.LATB13
+#define VALVE15POWER LATDbits.LATD8
+
+#define PUMP4POWER LATDbits.LATD6
+#define VALVE16POWER LATBbits.LATB1
+#define VALVE17POWER LATDbits.LATD7
+#define VALVE18POWER LATDbits.LATD0
+#define VALVE19POWER LATBbits.LATB0
+
 int getValveState(int valveSet) {
-	int oneAndTwo = ((LATBbits.LATB1 && LATBbits.LATB2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-	int zeroAndThree = ((LATBbits.LATB0 && LATBbits.LATB3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+	int oneAndTwo = ((VALVE1POWER && VALVE2POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+	int zeroAndThree = ((VALVE0POWER && VALVE3POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 	switch(valveSet) {
 		case VALVESET0 :
-			oneAndTwo = ((LATBbits.LATB1 && LATBbits.LATB2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((LATBbits.LATB0 && LATBbits.LATB3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((VALVE1POWER && VALVE2POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((VALVE0POWER && VALVE3POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET1 :
-			oneAndTwo = ((LATBbits.LATB6 && LATBbits.LATB7) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((LATBbits.LATB5 && LATBbits.LATB8) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((VALVE5POWER && VALVE6POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((VALVE4POWER && VALVE7POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET2 :
-			oneAndTwo = ((LATBbits.LATB11 && LATBbits.LATB12) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((LATBbits.LATB10 && LATBbits.LATB13) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((VALVE9POWER && VALVE10POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((VALVE8POWER && VALVE11POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET3 :
-			oneAndTwo = ((LATDbits.LATD1 && LATDbits.LATD2) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((LATDbits.LATD0 && LATDbits.LATD3) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((VALVE13POWER && VALVE14POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((VALVE12POWER && VALVE15POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET4 :
-			oneAndTwo = ((LATDbits.LATD6 && LATDbits.LATD7) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((LATDbits.LATD5 && LATDbits.LATD8) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			oneAndTwo = ((VALVE17POWER && VALVE18POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			zeroAndThree = ((VALVE16POWER && VALVE19POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		default :
 		    break; //return UNKNOWNVALVESTATE;
@@ -38,41 +68,41 @@ int getValveState(int valveSet) {
 		return VALVESVACUUMOPEN;
 	} else {
 		return UNKNOWNVALVESTATE;
-	}		
+	}
 }
 
 int getPumpState(int pump) {
 	switch(pump) {
 		case PUMP0 :
-			if (!(LATBbits.LATB4)) {//PUMP0POWER) {
+			if (!(PUMP0POWER)) {//PUMP0POWER) {
 				return PUMPON;
 			} else {
 				return PUMPOFF;
 			}
 			break;
 		case PUMP1 :
-			if (!(LATBbits.LATB9)) {//PUMP0POWER) {
+			if (!(PUMP1POWER)) {//PUMP0POWER) {
 				return PUMPON;
 			} else {
 				return PUMPOFF;
 			}
 			break;
 		case PUMP2 :
-			if (!(LATBbits.LATB14)) {//PUMP0POWER) {
+			if (!(PUMP2POWER)) {//PUMP0POWER) {
 				return PUMPON;
 			} else {
 				return PUMPOFF;
 			}
 			break;
 		case PUMP3 :
-			if (!(LATDbits.LATD4)) {//PUMP0POWER) {
+			if (!(PUMP3POWER)) {//PUMP0POWER) {
 				return PUMPON;
 			} else {
 				return PUMPOFF;
 			}
 			break;
 		case PUMP4 :
-			if (!(LATDbits.LATD9)) {//PUMP0POWER) {
+			if (!(PUMP4POWER)) {//PUMP0POWER) {
 				return PUMPON;
 			} else {
 				return PUMPOFF;
@@ -97,39 +127,39 @@ void allPowerOff() {
 void allPowerOffValveset(int valveSet) {
 	switch(valveSet) {
 		case VALVESET0 :
-			LATBbits.LATB0 = VCLOSED;
-			LATBbits.LATB1 = VCLOSED;
-			LATBbits.LATB2 = VCLOSED;
-			LATBbits.LATB3 = VCLOSED;
-			LATBbits.LATB4 = PUMPOFF;
+			VALVE0POWER = VCLOSED;
+			VALVE1POWER = VCLOSED;
+			VALVE2POWER = VCLOSED;
+			VALVE3POWER = VCLOSED;
+			PUMP0POWER = PUMPOFF;
 			break;
 		case VALVESET1 :
-			LATBbits.LATB5 = VCLOSED;
-			LATBbits.LATB6 = VCLOSED;
-			LATBbits.LATB7 = VCLOSED;
-			LATBbits.LATB8 = VCLOSED;
-			LATBbits.LATB9 = PUMPOFF;
+			VALVE4POWER = VCLOSED;
+			VALVE5POWER = VCLOSED;
+			VALVE6POWER = VCLOSED;
+			VALVE7POWER = VCLOSED;
+			PUMP1POWER = PUMPOFF;
 			break;
 		case VALVESET2 :
-			LATBbits.LATB10 = VCLOSED;
-			LATBbits.LATB11 = VCLOSED;
-			LATBbits.LATB12 = VCLOSED;
-			LATBbits.LATB13 = VCLOSED;
-			LATBbits.LATB14 = PUMPOFF;
+			VALVE8POWER = VCLOSED;
+			VALVE9POWER = VCLOSED;
+			VALVE10POWER = VCLOSED;
+			VALVE11POWER = VCLOSED;
+			PUMP2POWER = PUMPOFF;
 			break;
 		case VALVESET3 :
-			LATDbits.LATD0 = VCLOSED;
-			LATDbits.LATD1 = VCLOSED;
-			LATDbits.LATD2 = VCLOSED;
-			LATDbits.LATD3 = VCLOSED;
-			LATDbits.LATD4 = PUMPOFF;
+			VALVE12POWER = VCLOSED;
+			VALVE13POWER = VCLOSED;
+			VALVE14POWER = VCLOSED;
+			VALVE15POWER = VCLOSED;
+			PUMP3POWER = PUMPOFF;
 			break;
 		case VALVESET4 :
-			LATDbits.LATD5 = VCLOSED;
-			LATDbits.LATD6 = VCLOSED;
-			LATDbits.LATD7 = VCLOSED;
-			LATDbits.LATD8 = VCLOSED;
-			LATDbits.LATD9 = PUMPOFF;
+			VALVE16POWER = VCLOSED;
+			VALVE17POWER = VCLOSED;
+			VALVE18POWER = VCLOSED;
+			VALVE19POWER = VCLOSED;
+			VALVE16POWER = PUMPOFF;
 			break;
 		default :
 		    break;
@@ -140,23 +170,23 @@ void pumpToState(unsigned int pump, unsigned int state) {
 	switch(pump){
 		case PUMP0 :
 		    //pump = state;
-		    LATBbits.LATB4 = state;
+		    PUMP0POWER = state;
 		    break;
 		case PUMP1 :
 		    //pump = state;
-		    LATBbits.LATB9 = state;
+		    PUMP1POWER = state;
 		    break;
 		case PUMP2 :
 		    //pump = state;
-		    LATBbits.LATB14 = state;
+		    PUMP2POWER = state;
 		    break;
 		case PUMP3 :
 		    //pump = state;
-		    LATDbits.LATD4 = state;
+		    PUMP3POWER = state;
 		    break;
 		case PUMP4 :
 		    //pump = state;
-		    LATDbits.LATD9 = state;
+		    PUMP4POWER = state;
 		    break;
 		default :
 		    break;
@@ -168,83 +198,83 @@ void valveToState(unsigned int valve, unsigned int state) {
 	switch(valve){
 		case VALVE0 :
 		    //VALVE0POWER = state;
-		    LATBbits.LATB0 = state;
+		    VALVE0POWER = state;
 		    break;
 		case VALVE1 :
 		    //VALVE1POWER = state;
-		    LATBbits.LATB1 = state;
+		    VALVE1POWER = state;
 		    break;
 		case VALVE2 :
 		    //VALVE2POWER = state;
-		    LATBbits.LATB2 = state;
+		    VALVE2POWER = state;
 		    break;
 		case VALVE3 :
 		    //VALVE3POWER = state;
-		    LATBbits.LATB3 = state;
+		    VALVE3POWER = state;
 		    break;
 		case VALVE4 :
 		    //VALVE0POWER = state;
-		    LATBbits.LATB5 = state;
+		    VALVE4POWER = state;
 		    break;
 		case VALVE5 :
 		    //VALVE1POWER = state;
-		    LATBbits.LATB6 = state;
+		    VALVE5POWER = state;
 		    break;
 		case VALVE6 :
 		    //VALVE2POWER = state;
-		    LATBbits.LATB7 = state;
+		    VALVE6POWER = state;
 		    break;
 		case VALVE7 :
 		    //VALVE3POWER = state;
-		    LATBbits.LATB8 = state;
+		    VALVE7POWER = state;
 		    break;
 		case VALVE8 :
 		    //VALVE0POWER = state;
-		    LATBbits.LATB10 = state;
+		    VALVE8POWER = state;
 		    break;
 		case VALVE9 :
 		    //VALVE1POWER = state;
-		    LATBbits.LATB11 = state;
+		    VALVE9POWER = state;
 		    break;
 		case VALVE10 :
 		    //VALVE2POWER = state;
-		    LATBbits.LATB12 = state;
+		    VALVE10POWER = state;
 		    break;
 		case VALVE11 :
 		    //VALVE3POWER = state;
-		    LATBbits.LATB13 = state;
+		    VALVE11POWER = state;
 		    break;
 		case VALVE12 :
 		    //VALVE0POWER = state;
-		    LATDbits.LATD0 = state;
+		    VALVE12POWER = state;
 		    break;
 		case VALVE13 :
 		    //VALVE1POWER = state;
-		    LATDbits.LATD1 = state;
+		    VALVE13POWER = state;
 		    break;
 		case VALVE14 :
 		    //VALVE2POWER = state;
-		    LATDbits.LATD2 = state;
+		    VALVE14POWER = state;
 		    break;
 		case VALVE15 :
 		    //VALVE3POWER = state;
-		    LATDbits.LATD3 = state;
+		    VALVE15POWER = state;
 		    break;
 		case VALVE16 :
 		    //VALVE0POWER = state;
-		    LATDbits.LATD5 = state;
+		    VALVE16POWER = state;
 		    break;
 		case VALVE17 :
 		    //VALVE1POWER = state;
-		    LATDbits.LATD6 = state;
+		    VALVE17POWER = state;
 		    break;
 		case VALVE18 :
 		    //VALVE2POWER = state;
-		    LATDbits.LATD7 = state;
+		    VALVE18POWER = state;
 		    break;
 		case VALVE19 :
 		    //VALVE3POWER = state;
-		    LATDbits.LATD8 = state;
+		    VALVE19POWER = state;
 		    break;
 		default :
 		    break;

@@ -1,8 +1,8 @@
-XC32PATH="/opt/microchip/xc32/v2.15/bin"
-HARMONYPATH=
-NU32PATH="/home/mdyehous/gitRepos/work/mechatronics/starterCode/PIC32Quickstart"
+XC32PATH=/opt/microchip/xc32/v2.15/bin/
+HARMONYPATH=/home/awthompson/microchip/harmony/v2_06
+NU32PATH=/home/awthompson/Desktop/embeddedComputing/embedded_computing_code/01_Quickstart
 PORT=/dev/ttyUSB0
-TERMEMU=
+TERMEMU=screen
 
 #This file is used to:
 #	1. compile .c files into .o files
@@ -14,7 +14,7 @@ TERMEMU=
 # and the harmony library.
 #
 # XC32PATH is the path to the xc32 bin directory. This directory contains
-# tools such as the compiler (xc32-gcc) and hex converter 
+# tools such as the compiler (xc32-gcc) and hex converter
 # (xc32-bin2hex)
 # Windows example (note the use of slashes not backslashes):
 # XC32PATH=C:/Program Files (x86)/Microchip/xc32/v1.40/bin
@@ -43,7 +43,7 @@ TERMEMU=
 # TERMEMU is your terminal emulator
 # Windows example:
 # TERMEMU=C:/Program Files (x86)/PuTTY/putty.exe
-# Mac example (screen is pre-installed and already on your execution path 
+# Mac example (screen is pre-installed and already on your execution path
 # so you can safely omit the full path)
 # TERMEMU=screen
 #END user configurable variables
@@ -109,12 +109,12 @@ $(TARGET).elf : $(OBJS)
 .PHONY: clean
 # Erase all hex, map, object, and elf files.
 clean :
-	$(RM) *.hex *.map *.o *.elf *.dep *.dis       
+	$(RM) *.hex *.map *.o *.elf *.dep *.dis
 
 .PHONY: write
 # After making, call the NU32utility to program via bootloader.
 write : $(TARGET).hex $(TARGET).dis
-	$(WRITE) "$(PORT)" $(TARGET).hex 
+	$(WRITE) "$(PORT)" $(TARGET).hex
 
 .PHONY: putty
 putty :
