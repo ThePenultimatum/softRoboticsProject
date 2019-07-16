@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "NU32.h"          // constants, funcs for startup and UART
 #include "pneumatics.h"
+#include "utilities.h"
 
-void setup_nu32_softrobotics(void);
-void delayRough(void);
+void cyclePumps(void);
+void cycleValves(void);

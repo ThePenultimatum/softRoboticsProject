@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include "NU32.h"          // constants, funcs for startup and UART
 #include "pneumatics.h"
+#include "testing.h"
+#include "utilities.h"
 
-void setup_nu32_softrobotics(void);
-void delayRough(void);
+void cycleAllComponents(void);
+
+void rollMMVS(void);
+
+void shrinkMcKibbens(void);
