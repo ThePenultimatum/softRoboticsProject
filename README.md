@@ -9,7 +9,16 @@ The microcontroller we used is the PIC32. It is on an NU32 board designed and bu
 
 [View the project on github here.](https://github.com/ThePenultimatum/softRoboticsProject)
 
-## Components
+## Software
+This software is contained in the src directory structure. Examples for usage are available for demonstration, testing, and validation purposes in the examples.c file. The code is built to be high-level and not require the user to interface directly with registers and embedded components on the microcontroller in use. Instead, functions are built to transfer between states for each set of four valves and one pump (of which there are five sets on the manifold). This allows the user to operate in tested parts of a usable state-machine for each four-valve-one-pump system. The function that should be used for transitions between states is the
+```c
+void switchState(int newState, int valveSet);
+```
+function located in the pneumatics.c and associated header files. Macros are available and should be used for the two input values. The macros are defined at the top of the pneumatics files with names such as VALVESET0 and VALVESVACUUMOPEN.
+
+## Hardware
+
+### Components
 
 * 1 NU32 board with PIC32 microcontrollers (1 per node including central node)
 * 4+ ft<sup>2</sup> Acrylic sheets for chassis
@@ -22,23 +31,23 @@ The microcontroller we used is the PIC32. It is on an NU32 board designed and bu
 * Assorted screws, nuts, bolts, washers
 * Hot Glue, caulk, or epoxy
 
-## Implementation
+### Implementation
 
-### Design
+#### Design
 
-#### Manifold
+##### Manifold
 
-##### Air-Vacuum Module
+###### Air-Vacuum Module
 
-##### Chassis
+###### Chassis
 
-#### MMVS-McKibben Robot
+##### MMVS-McKibben Robot
 
-##### MMVS
+###### MMVS
 
-##### McKibben
+###### McKibben
 
-##### Interface Connector
+###### Interface Connector
 
 ## Resources:
 
