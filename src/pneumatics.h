@@ -82,6 +82,36 @@
 #define PUMPOFF 1 // 1 is unconnected state because of hex inverter circuit
 #define UNKNOWNPUMPSTATE 200
 
+#define PUMP0POWER LATDbits.LATD2
+#define VALVE0POWER LATBbits.LATB3
+#define VALVE1POWER LATBbits.LATB5
+#define VALVE2POWER LATBbits.LATB4
+#define VALVE3POWER LATBbits.LATB8
+
+#define PUMP1POWER LATDbits.LATD3
+#define VALVE4POWER LATBbits.LATB7
+#define VALVE5POWER LATBbits.LATB11
+#define VALVE6POWER LATBbits.LATB6
+#define VALVE7POWER LATBbits.LATB10
+
+#define PUMP2POWER LATDbits.LATD4
+#define VALVE8POWER LATBbits.LATB2
+#define VALVE9POWER LATDbits.LATD1
+#define VALVE10POWER LATBbits.LATB9
+#define VALVE11POWER LATBbits.LATB14
+
+#define PUMP3POWER LATDbits.LATD5
+#define VALVE12POWER LATBbits.LATB13
+#define VALVE13POWER LATDbits.LATD8
+#define VALVE14POWER LATBbits.LATB12
+#define VALVE15POWER LATDbits.LATD9
+
+#define PUMP4POWER LATDbits.LATD6
+#define VALVE16POWER LATDbits.LATD0
+#define VALVE17POWER LATBbits.LATB0
+#define VALVE18POWER LATBbits.LATB1
+#define VALVE19POWER LATDbits.LATD7
+
 
 int getValveState(int valveSet);
 int getPumpState(int pump);
