@@ -1,6 +1,6 @@
-XC32PATH="/opt/microchip/xc32/v2.15/bin"
+XC32PATH=${xc32path}
 HARMONYPATH=
-NU32PATH="/home/mdyehous/gitRepos/work/mechatronics/starterCode/PIC32Quickstart"
+NU32PATH=${nu32path}
 PORT=/dev/ttyUSB0
 TERMEMU=
 
