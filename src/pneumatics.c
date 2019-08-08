@@ -1,34 +1,45 @@
 #include "pneumatics.h"
 
 int getValveState(int valveSet) {
-	int oneAndTwo = ((VALVE1POWER && VALVE2POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-	int zeroAndThree = ((VALVE0POWER && VALVE3POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+	int *oneAndTwo;
+	int *zeroAndThree;
+	getValveStateValues(valveSet, oneAndTwo, zeroAndThree);
+
+	return getValveStateLogic(*oneAndTwo, *zeroAndThree);
+}
+
+void getValveStateValues(int valveSet, int *oneAndTwo, int *zeroAndThree) {
+	*oneAndTwo = ((VALVE1POWER && VALVE2POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+	*zeroAndThree = ((VALVE0POWER && VALVE3POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 	switch(valveSet) {
 		case VALVESET0 :
-			oneAndTwo = ((VALVE1POWER && VALVE2POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((VALVE0POWER && VALVE3POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			*oneAndTwo = ((VALVE1POWER && VALVE2POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			*zeroAndThree = ((VALVE0POWER && VALVE3POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET1 :
-			oneAndTwo = ((VALVE5POWER && VALVE6POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((VALVE4POWER && VALVE7POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			*oneAndTwo = ((VALVE5POWER && VALVE6POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			*zeroAndThree = ((VALVE4POWER && VALVE7POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET2 :
-			oneAndTwo = ((VALVE9POWER && VALVE10POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((VALVE8POWER && VALVE11POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			*oneAndTwo = ((VALVE9POWER && VALVE10POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			*zeroAndThree = ((VALVE8POWER && VALVE11POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET3 :
-			oneAndTwo = ((VALVE13POWER && VALVE14POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((VALVE12POWER && VALVE15POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			*oneAndTwo = ((VALVE13POWER && VALVE14POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			*zeroAndThree = ((VALVE12POWER && VALVE15POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		case VALVESET4 :
-			oneAndTwo = ((VALVE17POWER && VALVE18POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
-			zeroAndThree = ((VALVE16POWER && VALVE19POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
+			*oneAndTwo = ((VALVE17POWER && VALVE18POWER) == VCLOSED); //VALVE1POWER && VALVE2POWER;
+			*zeroAndThree = ((VALVE16POWER && VALVE19POWER) == VCLOSED); //VALVE0POWER && VALVE3POWER;
 			break;
 		default :
 		    break; //return UNKNOWNVALVESTATE;
 	}
+	return;
+}
 
-	if (oneAndTwo && zeroAndThree) { //VALVE0POWER && VALVE1POWER && VALVE2POWER && VALVE3POWER) {
+int getValveStateLogic(int oneAndTwo, int zeroAndThree) {
+    if (oneAndTwo && zeroAndThree) { //VALVE0POWER && VALVE1POWER && VALVE2POWER && VALVE3POWER) {
 	    return VALVESCLOSED;
 	} else if (!(oneAndTwo || zeroAndThree)) {
 		return VALVESOPEN;

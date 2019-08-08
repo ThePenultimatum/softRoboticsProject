@@ -83,6 +83,8 @@
 #define UNKNOWNPUMPSTATE 200
 
 int getValveState(int valveSet);
+void getValveStateValues(int valveSet, int *oneAndTwo, int *zeroAndThree);
+int getValveStateLogic(int oneAndTwo, int zeroAndThree);
 int getPumpState(int pump);
 void switchState(int newState, int valveSet);
 void allPowerOff();

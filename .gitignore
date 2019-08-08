@@ -3,3 +3,4 @@
 *.dis
 *.elf
 *.map
+build/
