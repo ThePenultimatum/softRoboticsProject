@@ -84,27 +84,63 @@
 #define UNKNOWNPUMPSTATE 200
 
 int getValveState(int valveSet);
-//
+// given an input integer representing the valveset as a macro defined above,
+// this retrieves data from the registers of the hardware (using 
+// getValveStateValues) and returns the state value of the given valveset
+// potential states are VALVESOPEN, VALVESCLOSED, VALVESVACUUMOPEN,
+// VALVESAIROPEN, and UNKNOWNVALVESTATE
+// Usage:
+// getValveState(VALVESET0);
+// returns:
+// VALVESCLOSED
 
 void getValveStateValues(int valveSet, int *oneAndTwo, int *zeroAndThree);
-//
+// given an input integer representing the valveset as a macro defined above,
+// this retrieves the data from the registers and puts those values into
+// memory addressed by pointers input to this function
+// usage:
+// int *oneAndTwo;
+// int *zeroAndThree;
+// getValveStateValues(VALVESET0, oneAndTwo, zeroAndThree);
+// returns nothing, but places values at memory addressed by the two pointers
 
 int getPumpState(int pump);
-//
+// given an input pump identifier, this returns the state of the pump
+// as either PUMPON or PUMPOFF
+// usage:
+// getPumpState(PUMP1);
+// returns:
+// PUMPOFF
 
 void switchState(int newState, int valveSet);
-//
+// given a desired new state for a given valveset, this changes the states
+// of each of the four valves and the pump in the valveset to appropriately
+// achieve the desired overall valveset state (such as VALVESCLOSED)
+// usage:
+// switchState(VALVESVACUUMOPEN, VALVESET2);
 
 void allPowerOff();
-//
+// this cycles through all the valvesets 0-4 and uses allPowerOffValveset()
+// to turn off all power to each valveset. No input or output values
 
 void allPowerOffValveset(int valveSet);
-//
+// given an input valveset identifier, this cycles through the valves 0-3
+// along with the pump and changes the digital I/O value to turn off power;
+// if the power is already off on a valve or pump, nothing changes with that
+// valve or pump; no return values
+// usage:
+// allPowerOffValveset(VALVESET0);
 
 void valveToState(unsigned int valve, unsigned int state);
-//
+// given an input valve and an input state, this switches the given
+// valve I/O port to the appropriate state value, no return value
+// usage:
+// pumpToState(VALVE3, VOPEN);
 
 void pumpToState(unsigned int pump, unsigned int state);
-//
+// given an input pump and an input state, this switches the given
+// pump I/O port to the appropriate state value, no return value
+// usage:
+// pumpToState(PUMP0, PUMPON);
 
 #endif
