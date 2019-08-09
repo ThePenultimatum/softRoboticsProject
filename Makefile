@@ -28,8 +28,8 @@ BUILD_PATHS = $(PATHB) $(PATHD) $(PATHO) $(PATHR)
 
 SRCT = $(wildcard $(PATHT)*.c)
 
-XC32PATH=${xc32path}
-CC="$(XC32PATH)/xc32-gcc"
+
+CC=gcc
 COMPILE=$(CC) -c
 LINK=$(CC)
 DEPEND=$(CC) -MM -MG -MF

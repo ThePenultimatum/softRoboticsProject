@@ -3,6 +3,7 @@
 
 #include <xc.h>                     // processor SFR definitions
 #include <sys/attribs.h>            // __ISR macro
+#include "pneumaticsLogic.h"
 
 #define PUMP0POWER LATDbits.LATD2
 #define VALVE0POWER LATBbits.LATB3
@@ -84,7 +85,6 @@
 
 int getValveState(int valveSet);
 void getValveStateValues(int valveSet, int *oneAndTwo, int *zeroAndThree);
-int getValveStateLogic(int oneAndTwo, int zeroAndThree);
 int getPumpState(int pump);
 void switchState(int newState, int valveSet);
 void allPowerOff();
