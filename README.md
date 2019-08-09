@@ -16,6 +16,14 @@ void switchState(int newState, int valveSet);
 ```
 function located in the pneumatics.c and associated header files. Macros are available and should be used for the two input values. The macros are defined at the top of the pneumatics files with names such as VALVESET0 and VALVESVACUUMOPEN.
 
+### Testing
+Unit tests are written using the Unity testing framework for C. They are located in the test/ directory, and the supporting framework (as is standard usage for Unity) is located in the unity/ directory.
+Tests are run by navigating to the main directory and using make to run the makefile.
+```shell
+make test
+```
+The software is broken into logical components and data retrieval components to isolate logic for testing using Unity and leave data retrieval for testing on the hardware itself.
+
 ## Hardware
 
 ### Components
